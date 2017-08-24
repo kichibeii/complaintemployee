@@ -3,6 +3,7 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Complaint_model');
 		
 	}
 	public function index(){
@@ -49,9 +50,11 @@ class Admin extends CI_Controller {
 
 	public function homeadmin(){
 		if (isset($_SESSION['id_user'])){
-			$this->load->view('templates/header.php');
-			$this->load->view('homeadmin.php');
-			$this->load->view('templates/footer.php');
+			$data['masuk'] = $this->Complaint_model->get_all_belum();
+			$data['tanggapi'] = $this->Complaint_model->get_all_tanggapi();
+			$data['selesai'] = $this->Complaint_model->get_all_selesai();
+ 			$this->load->view('templates/header.php');
+			$this->load->view('homeadmin.php',$data);
 		}else{
 			redirect('Admin');
 		}

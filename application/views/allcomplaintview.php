@@ -14,32 +14,33 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php 
+				$number = 0;
+				foreach($complaints as $complaint_item): 
+					$number = $number + 1;
+				?>
 				<tr>
-					<td style="text-align: center">1</td>
-					<td style="text-align: center">AC tidak dingin</td>
-					<td style="text-align: center">Meeting Room 2</td>
-					<td style="text-align: center">Mukhibillah</td>
-					<td style="text-align: center">IT&GA</td>
-					<td style="text-align: center"><span class="glyphicon glyphicon-remove"></span></td>
-				</tr>
-				<tr>
-					<td style="text-align: center">2</td>
-					<td style="text-align: center">Ruangan Bau</td>
-					<td style="text-align: center">Meeting Room 1</td>
-					<td style="text-align: center">Mukhibillah</td>
-					<td style="text-align: center">IT&GA</td>
-					<td style="text-align: center">-sedang tanggapi-</td>
-				</tr>
-				<tr>
-					<td style="text-align: center">3</td>
-					<td style="text-align: center">Ngga ada TV</td>
-					<td style="text-align: center">Ruang IT&GA</td>
-					<td style="text-align: center">Mukhibillah</td>
-					<td style="text-align: center">IT&GA</td>
-					<td style="text-align: center" style="color: lightgreen"><span class="glyphicon glyphicon-ok"></span></td>
-				</tr>
+					<td style="text-align: center"><?=$number?></td>
+					<td style="text-align: center"><?=$complaint_item['permasalahan']?></td>
+					<td style="text-align: center"><?=$complaint_item['tempat']?></td>
+					<td style="text-align: center"><?=$complaint_item['nama']?></td>
+					<td style="text-align: center"><?=$complaint_item['divisi']?></td>
+					<?php 
+					if($complaint_item['tanggapi']==NULL){
+						?>
+						<td style="text-align: center"><span class="glyphicon glyphicon-remove"></span></td>
+						<?php 
+					}else if($complaint_item['selesai']==null){
+						?>
+						<td style="text-align: center">-sedang tanggapi-</td>
+						<?php 
+					}else{
+						?>
+						<td style="text-align: center" style="color: lightgreen"><span class="glyphicon glyphicon-ok"></span></td>
+						<?php }?>
+					</tr>
+				<?php endforeach?>
 			</tbody>
 		</table>
 	</div>
 </body>
-
