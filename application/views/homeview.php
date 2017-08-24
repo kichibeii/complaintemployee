@@ -4,6 +4,7 @@
 	</div>
 	<h1 style="text-align: center;color: black">Complaint Form</h1>
 	<br>
+	<?= form_open('Complaint/insert')?>
 	<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
 		<div class="form-horizontal form-label-left">
 			<div class="form-group">
@@ -36,7 +37,7 @@
 			<div class="form-group">
 				<label class="control-label col-md-3 col-sm-3 col-xs-12">
 					Nama
-				</label>
+				</label>	
 				<div class="col-md-6 col-sm-6 col-xs-6">
 					<input name="nama"  class="form-control col-md-7 col-xs-12" type="text" placeholder="Siapa Namamu?" required>
 				</div>
@@ -54,13 +55,15 @@
 					Handphone
 				</label>
 				<div class="col-md-6 col-sm-6 col-xs-6">
-					<input  name="Handphone" class="form-control col-md-7 col-xs-12" type="text" placeholder="Nomer Handphonemu?" required>
+					<input  name="handphone" class="form-control col-md-7 col-xs-12" type="text" placeholder="Nomer Handphonemu?" required>
 				</div>
 			</div>
+			<?= $this->session->flashdata('alert') ?>
 			<div class="form-group pull-right">
 				<button type="submit" class="btn btn-success">Submit</button>
 			</div>
 		</div>
 	</div>
+	<?=form_close();?>
 </body>
 

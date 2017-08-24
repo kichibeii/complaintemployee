@@ -40,89 +40,115 @@
 										<th style="text-align: center">Tempat</th>
 										<th style="text-align: center">Nama</th>
 										<th style="text-align: center">Divisi</th>
-										<th style="text-align: center">Status</th>
+										<th style="text-align: center">Tanggapi?</th>
 									</tr>
 								</thead>
 								<tbody>
+									<?php 
+									$number = 0;
+									foreach ($masuk as $key => $value): 
+										$number++;
+									?>
 									<tr>
-										<td style="text-align: center">1</td>
-										<td style="text-align: center"><?=date('d-m-Y')?></td>
-										<td style="text-align: center">AC tidak dingin</td>
-										<td style="text-align: center">Meeting Room 2</td>
-										<td style="text-align: center">Mukhibillah</td>
-										<td style="text-align: center">IT&GA</td>
-										<td style="text-align: center"><span class="glyphicon glyphicon-remove"></span></td>
+										<td style="text-align: center"><?=$number?></td>
+										<td style="text-align: center"><?=date("d-m-Y",strtotime($value['masuk'])) ?></td>
+										<td style="text-align: center"><?=$value['permasalahan'] ?></td>
+										<td style="text-align: center"><?=$value['tempat'] ?></td>
+										<td style="text-align: center"><?=$value['nama'] ?></td>
+										<td style="text-align: center"><?=$value['divisi'] ?></td>
+										<td style="text-align: center"><input type="checkbox" name="id_datanya" value=2> Ya</td>
 									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- content 1 -->
-
-						<!-- content 2 -->
-						<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="anggota-tab">
-
-							<table class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
-								<thead>
-									<tr class="heading">
-										<th style="text-align: center">No</th>
-										<th style="text-align: center">Tanggal Mulai Ditanggapi</th>
-										<th style="text-align: center">Keluhan</th>
-										<th style="text-align: center">Tempat</th>
-										<th style="text-align: center">Nama</th>
-										<th style="text-align: center">Divisi</th>
-										<th style="text-align: center">Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td style="text-align: center">1</td>
-										<td style="text-align: center"><?=date('m-d-Y')?></td>
-										<td style="text-align: center">AC tidak dingin</td>
-										<td style="text-align: center">Meeting Room 2</td>
-										<td style="text-align: center">Mukhibillah</td>
-										<td style="text-align: center">IT&GA</td>
-										<td style="text-align: center">sedang Ditanggapi</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-						<!-- content 2 -->
-
-						<!-- content 3 -->
-						<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="allmeeting-tab">
-							<table class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
-								<thead>
-									<tr class="heading">
-										<th style="text-align: center">No</th>
-										<th style="text-align: center">Tanggal Penyelesaian</th>
-										<th style="text-align: center">Keluhan</th>
-										<th style="text-align: center">Tempat</th>
-										<th style="text-align: center">Nama</th>
-										<th style="text-align: center">Divisi</th>
-										<th style="text-align: center">Jeda Waktu (tanggapi-selesai)</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td style="text-align: center">1</td>
-										<td style="text-align: center"><?=date('m-d-Y')?></td>
-										<td style="text-align: center">AC tidak dingin</td>
-										<td style="text-align: center">Meeting Room 2</td>
-										<td style="text-align: center">Mukhibillah</td>
-										<td style="text-align: center">IT&GA</td>
-										<td style="text-align: center">3 bulan</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- content 3 -->
-
+								<?php endforeach ?>
+							</tbody>
+						</table>
+						<input type="submit" style="position:fixed; bottom: 60px; right: 35px ; z-index: 1000!important"" class="btn btn-primary" value="Tanggapi">
 					</div>
+					<!-- content 1 -->
 
+					<!-- content 2 -->
+					<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="anggota-tab">
+
+						<table class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
+							<thead>
+								<tr class="heading">
+									<th style="text-align: center">No</th>
+									<th style="text-align: center">Tanggal Mulai Ditanggapi</th>
+									<th style="text-align: center">Keluhan</th>
+									<th style="text-align: center">Tempat</th>
+									<th style="text-align: center">Nama</th>
+									<th style="text-align: center">Divisi</th>
+									<th style="text-align: center">Selesai?</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php 
+								$number = 0;
+								foreach ($tanggapi as $key => $value): 
+									$number++;
+								?>
+								<tr>
+									<td style="text-align: center"><?=$number?></td>
+									<td style="text-align: center"><?=date("d-m-Y",strtotime($value['tanggapi'])) ?></td>
+									<td style="text-align: center"><?=$value['permasalahan'] ?></td>
+									<td style="text-align: center"><?=$value['tempat'] ?></td>
+									<td style="text-align: center"><?=$value['nama'] ?></td>
+									<td style="text-align: center"><?=$value['divisi'] ?></td>
+									<td style="text-align: center"><input type="checkbox" name="id_datanya" value=2> Ya</td>
+								</tr>
+							<?php endforeach ?>
+
+						</tbody>
+					</table>
+					<input type="submit" style="position:fixed; bottom: 60px; right: 35px ; z-index: 1000!important"" class="btn btn-primary" value="Selesai">
 				</div>
+
+				<!-- content 2 -->
+
+				<!-- content 3 -->
+				<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="allmeeting-tab">
+					<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
+						<thead>
+							<tr class="heading">
+								<th style="text-align: center">No</th>
+								<th style="text-align: center">Tanggal Penyelesaian</th>
+								<th style="text-align: center">Keluhan</th>
+								<th style="text-align: center">Tempat</th>
+								<th style="text-align: center">Nama</th>
+								<th style="text-align: center">Divisi</th>
+								<th style="text-align: center">Jeda Waktu (tanggapi-selesai)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							$number = 0;
+							foreach ($selesai as $key => $value): 
+								$number++;
+							?>
+							<tr>
+								<td style="text-align: center"><?=$number?></td>
+								<td style="text-align: center"><?=date("d-m-Y",strtotime($value['selesai']))?></td>
+								<td style="text-align: center"><?=$value['permasalahan'] ?></td>
+								<td style="text-align: center"><?=$value['tempat'] ?></td>
+								<td style="text-align: center"><?=$value['nama'] ?></td>
+								<td style="text-align: center"><?=$value['divisi'] ?></td>
+								<td style="text-align: center"><?php
+									$datetime1 = date_create($value['masuk']);
+									$datetime2 = date_create($value['selesai']);
+									$interval = date_diff($datetime1, $datetime2);
+									echo $interval->format('%a hari')
+								?>
+								</tr>
+							<?php endforeach ?>
+						</tbody>
+					</table>
+				</div>
+				<!-- content 3 -->
+
 			</div>
+
 		</div>
-	</div> 
+	</div>
+</div>
+</div> 
 </div>
 </body>
