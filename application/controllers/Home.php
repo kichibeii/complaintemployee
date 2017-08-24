@@ -16,4 +16,6 @@ class Home extends CI_Controller {
 		$this->load->view('allcomplaintview.php');
 		$this->load->view('templates/footer.php');
 	}
+
+	
 }
