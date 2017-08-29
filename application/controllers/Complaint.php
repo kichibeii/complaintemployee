@@ -19,7 +19,6 @@ class Complaint extends CI_Controller {
 			'permasalahan'=>$permasalahan,
 			'nama'=>$nama,
 			'divisi'=>$divisi,
-			'handphone'=>$handphone,
 			'masuk'=>date('Y-m-d H:i:s')
 			);
 		$result = $this->Complaint_model->insert($data);

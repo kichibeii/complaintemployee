@@ -10,7 +10,7 @@
 		<div class="clearfix"></div>
 		<div class="">
 			<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:rgb(255,255,255)">
-				<h1 style="text-align: center;color: black">Admin Complaint System</h1>
+				<h1 style="text-align: center;color: black">Sistem Keluhan Online - Admin</h1>
 
 				<!-- konten di sini -->
 				<div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -31,6 +31,7 @@
 
 						<!-- content 1 -->
 						<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="meeting-tab">
+							<?=form_open('Admin/ganti_tanggapi')?>
 							<table class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
 								<thead>
 									<tr class="heading">
@@ -41,6 +42,7 @@
 										<th style="text-align: center">Nama</th>
 										<th style="text-align: center">Divisi</th>
 										<th style="text-align: center">Tanggapi?</th>
+										<th style="text-align: center">Keterangan</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -56,19 +58,25 @@
 										<td style="text-align: center"><?=$value['tempat'] ?></td>
 										<td style="text-align: center"><?=$value['nama'] ?></td>
 										<td style="text-align: center"><?=$value['divisi'] ?></td>
-										<td style="text-align: center"><input type="checkbox" name="id_datanya" value=2> Ya</td>
+										<td style="text-align: center;">
+										<input type="number" name="id[<?=$number?>]" value="<?=$value['id_complaint']?>" hidden>
+										<input type="checkbox" name="data[<?=$number?>]" value=1> Tanggap<br>
+										<input type="checkbox" name="data2[<?=$number?>]" value=2> Tolak</td>
+										<td style="background-color: #FFF"><input type="text" style="background-color: transparent;border: 0px solid;width: 160px;color:000;" name="keterangan[<?=$number?>]" value="<?=$value['keterangan']?>"></td>
 									</tr>
 								<?php endforeach ?>
 							</tbody>
 						</table>
+						<input type="number" hidden name="counter" value="<?=$number?>">
 						<input type="submit" style="position:fixed; bottom: 60px; right: 35px ; z-index: 1000!important"" class="btn btn-primary" value="Tanggapi">
+						<?=form_close();?>
 					</div>
 					<!-- content 1 -->
 
 					<!-- content 2 -->
 					<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="anggota-tab">
-
-						<table class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
+						<?=form_open('Admin/ganti_selesai')?>
+						<table  class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
 							<thead>
 								<tr class="heading">
 									<th style="text-align: center">No</th>
@@ -93,19 +101,21 @@
 									<td style="text-align: center"><?=$value['tempat'] ?></td>
 									<td style="text-align: center"><?=$value['nama'] ?></td>
 									<td style="text-align: center"><?=$value['divisi'] ?></td>
-									<td style="text-align: center"><input type="checkbox" name="id_datanya" value=2> Ya</td>
+									<td style="text-align: center"><input type="checkbox" name="data[<?=$number?>]" value=2> Ya</td>
+									<input hidden type="number" name="id[<?=$number?>]" value="<?=$value['id_complaint']?>">
 								</tr>
 							<?php endforeach ?>
-
 						</tbody>
 					</table>
+					<input type="number" name="counter" value="<?=$number?>" hidden>
 					<input type="submit" style="position:fixed; bottom: 60px; right: 35px ; z-index: 1000!important"" class="btn btn-primary" value="Selesai">
+					<?=form_close()?>
 				</div>
 
 				<!-- content 2 -->
 
 				<!-- content 3 -->
-				<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="allmeeting-tab">
+				<div  role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="allmeeting-tab">
 					<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap table-bordered jambo_table bulk_action" cellspacing="0" width="100%">
 						<thead>
 							<tr class="heading">
@@ -132,11 +142,15 @@
 								<td style="text-align: center"><?=$value['nama'] ?></td>
 								<td style="text-align: center"><?=$value['divisi'] ?></td>
 								<td style="text-align: center"><?php
+									if ($value['tolak']==1){
+										echo "Tolak";
+									}else{
 									$datetime1 = date_create($value['masuk']);
 									$datetime2 = date_create($value['selesai']);
 									$interval = date_diff($datetime1, $datetime2);
-									echo $interval->format('%a hari')
-								?>
+									echo $interval->format('%a hari');
+									}
+									?>
 								</tr>
 							<?php endforeach ?>
 						</tbody>
