@@ -31,7 +31,7 @@
  					);
  				$this->session->set_userdata($session_data);
  				redirect('Admin/homeadmin');
- 			}else if ($username == "admin" AND $password == "keluhanonline2017pmu"){
+ 			}else if ($username == "pmufm" AND $password == "fmjiep2017"){
  				$session_data = array(
  					'id_user' => 3,
  					'status' => "logined"
@@ -109,13 +109,26 @@
  	public function ganti_selesai(){
  		$counter = $this->input->post('counter');
  		for ($i=1;$i<=$counter;$i++){
- 			$char = "data[".$i."]";
- 			$char2 = "id[".$i."]";
- 			$value = $this->input->post($char);
- 			$id = $this->input->post($char2);
- 			if($value==2){
+ 			$char = "id[".$i."]";
+ 			$char2 = "data[".$i."]";
+ 			$char3 = "data2[".$i."]";
+ 			$char4 = "keterangan[".$i."]";
+ 			$id = $this->input->post($char);
+ 			$ya = $this->input->post($char2);
+ 			$tidak = $this->input->post($char3);
+ 			$keterangan = $this->input->post($char4);
+ 			if($ya==2){
  				$data = array(
- 					'selesai'=>date('Y-m-d H:i:s')
+ 					'selesai'=>date('Y-m-d H:i:s'),
+ 					'keterangan'=>$keterangan
+ 					);
+ 				$this->Complaint_model->update($id,$data);
+ 			}
+ 			if($tidak==3){
+ 				$data = array(
+ 					'selesai'=>date('Y-m-d H:i:s'),
+ 					'keterangan'=>$keterangan,
+ 					'tdkselesai'=>1
  					);
  				$this->Complaint_model->update($id,$data);
  			}

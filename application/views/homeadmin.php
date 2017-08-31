@@ -86,6 +86,7 @@
 									<th style="text-align: center">Nama</th>
 									<th style="text-align: center">Divisi</th>
 									<th style="text-align: center">Selesai?</th>
+									<th style="text-align: center">Keterangan</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -101,7 +102,9 @@
 									<td style="text-align: center"><?=$value['tempat'] ?></td>
 									<td style="text-align: center"><?=$value['nama'] ?></td>
 									<td style="text-align: center"><?=$value['divisi'] ?></td>
-									<td style="text-align: center"><input type="checkbox" name="data[<?=$number?>]" value=2> Ya</td>
+									<td style="text-align: center"><input type="checkbox" name="data[<?=$number?>]" value=2> Ya<br>
+									<input type="checkbox" name="data2[<?=$number?>]" value="3"> Tidak</td>
+									<td style="background-color: #FFF;text-align: center"><input type="text" style="background-color: transparent;border: 0px solid;width: 160px;color:000;" name="keterangan[<?=$number?>]" value="<?=$value['keterangan']?>"></td>
 									<input hidden type="number" name="id[<?=$number?>]" value="<?=$value['id_complaint']?>">
 								</tr>
 							<?php endforeach ?>
@@ -142,7 +145,10 @@
 								<td style="text-align: center"><?=$value['nama'] ?></td>
 								<td style="text-align: center"><?=$value['divisi'] ?></td>
 								<td style="text-align: center"><?php
-									if ($value['tolak']==1){
+									if ($value['tdkselesai']==1){
+										echo "Tidak Selesai";
+									}
+									else if ($value['tolak']==1){
 										echo "Tolak";
 									}else{
 									$datetime1 = date_create($value['masuk']);

@@ -30,7 +30,12 @@
 					<td style="text-align: center"><?=$complaint_item['nama']?></td>
 					<td style="text-align: center"><?=$complaint_item['divisi']?></td>
 					<?php 
-					if($complaint_item['tolak']==1){
+					if($complaint_item['tdkselesai']==1){
+						?>
+						<td style="text-align: center"><span class="glyphicon glyphicon-minus"></span> <br>Tidak selesai</td>
+						<?php
+					}
+					else if($complaint_item['tolak']==1){
 						?>
 						<td style="text-align: center"><span class="glyphicon glyphicon-remove"></span> <br>Tolak</td>
 						<?php 
@@ -40,7 +45,7 @@
 						<?php 
 					}else if($complaint_item['selesai']==null){
 						?>
-						<td style="text-align: center"><span class="glyphicon glyphicon-eye-open"></span> <span class="glyphicon glyphicon-eye-open"></span> Tanggapi</td>
+						<td style="text-align: center"><span class="glyphicon glyphicon-eye-open"></span> <span class="glyphicon glyphicon-eye-open"></span><br> Tanggapi</td>
 						<?php 
 					}else{
 						?>
